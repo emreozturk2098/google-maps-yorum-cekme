@@ -26,7 +26,7 @@ from datetime import datetime
 from decimal import Decimal, ROUND_HALF_UP
 from urllib.parse import urlsplit, unquote
 
-VERSION = '4.4'
+APPLICATION = 'Google Maps Yorum Çekme'
 WORKSPACE = Path(__file__).resolve().parent
 DEFAULT_OUTPUT = WORKSPACE/'Google_yorum'
 CARD = '.jJc9Ad'
@@ -377,7 +377,7 @@ class Collector:
   self.checkpoint_file=self.checkpoint_dir/'yorum_kurtarma.json'
  def checkpoint(self):
   measured=time.perf_counter()
-  data=dict(version=VERSION,url=self.url,rows=list(self.rows.values()),raw_rows=self.raw_rows,meta=self.meta,final_meta=self.final_meta,error=self.error,diagnostics=self.diagnostics,access_state=self.access_state,access_screenshot=self.access_screenshot,progress=self.progress.history,performance=self.performance,started=self.started,round=self.round)
+  data=dict(application=APPLICATION,url=self.url,rows=list(self.rows.values()),raw_rows=self.raw_rows,meta=self.meta,final_meta=self.final_meta,error=self.error,diagnostics=self.diagnostics,access_state=self.access_state,access_screenshot=self.access_screenshot,progress=self.progress.history,performance=self.performance,started=self.started,round=self.round)
   tmp=self.checkpoint_file.with_suffix('.tmp')
   tmp.write_text(json.dumps(data,ensure_ascii=False),encoding='utf-8');tmp.replace(self.checkpoint_file)
   self.performance['checkpoint_calls']+=1
@@ -457,7 +457,7 @@ class Collector:
   self.meta=metadata(retry('ILK_TOPLAM_OKUMA',lambda:page.evaluate(READ_META)));self.checkpoint()
   if self.meta.get('total')==0:return
   self.progress.update('İlk yorumlar yükleniyor',10)
-  # Honda gibi sayfalarda filtrelerin altindaki kartlar panel kaydirilinca yuklenir.
+  # Bazi sayfalarda filtrelerin altindaki kartlar panel kaydirilinca yuklenir.
   # Kaydirma alani ilk karta bagli olmadan bulunur. Sinirli ve yeniden kontrol edilen kurtarma.
   panel_script=r'''e=>{
    const visible=n=>{const r=n.getBoundingClientRect();return r.width>0&&r.height>0;};
@@ -952,7 +952,7 @@ def export(c,folder):
  return path
 
 def save_run_result(c,files=None):
- result=dict(version=VERSION,started=c.started,report=c.report(),error=c.error,diagnostics=c.diagnostics,access_state=c.access_state,access_screenshot=c.access_screenshot,progress=c.progress.history,performance=c.performance,
+ result=dict(application=APPLICATION,started=c.started,report=c.report(),error=c.error,diagnostics=c.diagnostics,access_state=c.access_state,access_screenshot=c.access_screenshot,progress=c.progress.history,performance=c.performance,
   manager_layout=dict(headers=MANAGER_HEADERS,row_ids=[r['id'] for r in sorted(c.rows.values(),key=lambda r:age(r['date']))]),
   files=dict(checkpoint=str(c.checkpoint_file),log=str(c.checkpoint_dir/'calisma.log'),**(files or {})))
  path=c.checkpoint_dir/'sonuc.json';tmp=path.with_suffix('.tmp')
@@ -993,9 +993,9 @@ def self_test():
  assert is_limited_notice('Google Haritalar’ın sınırlı bir görünümünü kullanıyorsunuz')
  assert not is_limited_notice('Learn more about using limited view')
  assert not is_limited_notice('Sınırlı görünüm hakkında bilgi edinin')
- assert old_output_name('FAMİ_Yorumlar_20261013_171839_KISMI.xlsx','FAMİ')
- assert not old_output_name('FAMİ_Yorumlar.xlsx','FAMİ')
- assert not old_output_name('Başka_Yorumlar_20261013_171839_KISMI.xlsx','FAMİ')
+ assert old_output_name('Ornek_Isletme_Yorumlar_20261013_171839_KISMI.xlsx','Ornek_Isletme')
+ assert not old_output_name('Ornek_Isletme_Yorumlar.xlsx','Ornek_Isletme')
+ assert not old_output_name('Başka_Yorumlar_20261013_171839_KISMI.xlsx','Ornek_Isletme')
  assert unique_control({'card_count':2,'control_count':1})
  assert not unique_control({'card_count':2,'control_count':2})
  assert not unique_control({'card_count':1,'control_count':0})
@@ -1041,7 +1041,7 @@ def self_test():
  assert metadata(dict(counts=['17\u202f281 reviews'],labels=[]))['total']==17281
  assert metadata(dict(counts=['17K reviews'],labels=[]))['total'] is None
  assert map_place_key('https://www.google.com/maps/place/X/data=!4m2!3m1!1s0x123:0x456')=='0x123:0x456'
- assert map_place_key('https://www.google.com/maps/place/Honda+Plaza+Damla/@1,2,3z')=='name:honda plaza damla'
+ assert map_place_key('https://www.google.com/maps/place/Ornek+Isletme/@1,2,3z')=='name:ornek isletme'
  from unittest.mock import patch
  from contextlib import redirect_stdout
  import io
@@ -1073,7 +1073,7 @@ def analyze_saved(source=None):
    if field in data:setattr(c,field,data[field])
   c.rows={r['id']:r for r in rows};c.checkpoint_file=path
   c.include_analysis=True
-  c.analysis_source=dict(path=str(path),version=data.get('version'),started=data['started'])
+  c.analysis_source=dict(path=str(path),application=data.get('application'),started=data['started'])
   if c.report()['status'].startswith('KISMI'):
    print('Son kaydın tamlığı doğrulanamamış. Mevcut Excel değiştirilmedi; önce kaynak çalışma incelenmeli.');return 2
   # Kaynak kurtarma JSON'u degistirilmez; analiz kaydi ayri tutulur.
@@ -1101,9 +1101,9 @@ def main():
  run_dir.mkdir(parents=True,exist_ok=True)
  logging.basicConfig(level=logging.INFO,format='%(asctime)s | %(levelname)s | %(message)s',
   handlers=[logging.FileHandler(run_dir/'calisma.log',encoding='utf-8')],force=True)
- print('Google Maps yorumları | Sürüm',VERSION)
+ print(APPLICATION)
  print('Genel yüzde yaklaşık aşama ilerlemesidir; süre tahmini ölçülen hıza göre güncellenir.')
- logging.info('BASLANGIC | SURUM=%s | PYTHON=%s | WORKSPACE=%s',VERSION,sys.version.split()[0],WORKSPACE)
+ logging.info('BASLANGIC | UYGULAMA=%s | PYTHON=%s | WORKSPACE=%s',APPLICATION,sys.version.split()[0],WORKSPACE)
  if sys.version_info<(3,10):print('Python 3.10 veya üzeri gerekli.');return 3
  try:url=validate_url(input('Google Maps işletme bağlantısını yapıştırın: ').strip().strip('"'))
  except (TaskError,EOFError) as e:logging.error('LINK HATASI | %s',safe_error(e));print('Geçerli bir Google Maps işletme bağlantısı girilmedi.');return 3

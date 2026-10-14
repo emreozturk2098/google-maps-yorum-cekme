@@ -1,40 +1,29 @@
-# Performans ve doğrulama
+# Gerçek deneme sonuçları
 
-14.10.2026. Kullanıcının gerçek Maps çalışmalarından toplu sonuçlar. Süre ENTER sonrası “İşletme bilgileri okunuyor” satırından Excel kaydının bitişine kadar; Chrome açma, URL yazma ve giriş beklemesi hariçtir.
+İşletme adları gizlenmiştir. Süre, kullanıcının ENTER tuşuna basmasından Excel kaydının tamamlanmasına kadar ölçülmüştür. Chrome açılışı, bağlantı yazma ve Google girişini bekleme bu süreye dahil değildir.
 
-| İşletme / sürüm | Değerlendirme | Metinli | Yalnızca yıldız | Tespit edilen cevap | Toplam süre |
+| Örnek | Değerlendirme | Metinli | Yalnızca yıldız | Tespit edilen işletme cevabı | Toplam süre |
 | --- | ---: | ---: | ---: | ---: | --- |
-| FAMİ / 4.1 | 107 | 86 | 21 | 66 | 30,27 sn |
-| Honda / 4.3 | 1.445 | 958 | 487 | 0 | 13 dk 37,81 sn |
-| Honda / **4.4** | **1.445** | **958** | **487** | **0** | **13 dk 16,26 sn** |
-| Honda / 4.5 | 1.445 | 958 | 487 | 0 | 13 dk 22,73 sn |
-| Honda / 4.6 | 1.445 | 958 | 487 | 0 | 14 dk 31,51 sn |
+| İşletme A | 107 | 86 | 21 | 66 | 30,27 sn |
+| İşletme B | 1.445 | 958 | 487 | 0 | 13 dk 16,26 sn |
 
-Honda işletmesi Honda Plaza Damla'dır. Bu çalışmalarda toplam/yıldız dağılımı eşleşmiş, alan eksikliği/hata kaydedilmemiştir. Honda çalışmalarının ID kümesi ve bütün ad/yıldız/özgün metin/cevap alanları karşılaştırılmış; fark bulunmamıştır. FAMİ Excel'inin 107 satırı kaynak gösterimle; Honda 4.3 Excel'inin 1.445 temel ad/metin/yıldız/cevap alanı kaynakla eşleşmiştir.
+## İşin aşamaları
 
-Sıfır cevap okuyucunun bu çalışmalarda tespit ettiği durumdur; işletmenin hiçbir zaman cevap yazmadığı bağımsız kanıt değildir. Kullanıcı tarafından durdurulan denemeler başarı tablosuna eklenmedi. Gerçek müşteri kayıtları ve oturum dosyaları paylaşılmadı.
+Araç yorum listesini kaydırarak yeni kayıtların yüklenmesini bekler. Ardından uzun yorumları ve işletme cevaplarını açar, kayıtları kontrol eder ve Excel'i kaydeder.
 
-## Sürüm seçimi ve aşamalar
+1.445 değerlendirmeli örnekte listeyi yükleme yaklaşık **12 dakika**, metinleri açma, son kontroller ve Excel kaydı yaklaşık **1 dakika 14 saniye** sürmüştür. Başlangıç/bitiş işlemleri nedeniyle aşama sürelerinin toplamı toplam süreyle birebir aynı değildir. En fazla zamanı liste yükleme ve yeni kayıt bekleme almıştır.
 
-4.4 ölçülen Honda denemelerinde en kısa toplam süreyi verdi; kullanıcı isteğiyle kaynak byte düzeyinde 4.4'e döndürüldü. Her işletmede kesin en hızlı olduğu anlamına gelmez.
+## Sonuçların kontrolü
 
-| Honda sürümü | Yükleme | Yükleme sonrası metin/kontrol/Excel |
-| --- | ---: | ---: |
-| 4.3 | 723,657 sn | 92,292 sn |
-| 4.4 | 720,053 sn | 74,172 sn |
-| 4.5 | 781,134 sn | 19,691 sn |
-| 4.6 | 821,163 sn | 50,202 sn |
+- Bu çalışmalarda Maps'te görünen toplam ile alınan kayıt sayısı ve yıldız dağılımı eşleşmiştir; alan eksikliği veya çalışma hatası kaydedilmemiştir.
+- Kayıt kimlikleri, müşteri adları, yıldızlar, özgün yorum metinleri ve işletme cevapları tekrar edilen çalışmalarda karşılaştırılmıştır; karşılaştırılan alanlarda fark bulunmamıştır.
+- Sıfır cevap, aracın bu çalışmada tespit ettiği durumdur; işletmenin hiçbir zaman cevap yazmadığına dair bağımsız kanıt değildir.
+- Gerçek müşteri satırları, Excel dosyaları ve oturum dosyaları bu depoda paylaşılmaz.
 
-4.5 yüklerken More açarak sondaki işi azalttı; yükleme uzadı, toplam iyileşmedi. 4.6 erişim kontrolünü yaklaşık 95'ten 43 saniyeye indirdi; DOM/bekleme arttığı için toplam yine uzadı. Yerel maliyet azalması toplam hız artışı olarak sunulmadı.
+## Süreleri nasıl yorumlamalı?
 
-4.4'te yeni kayıt bekleme yaklaşık 487 sn, DOM okuma 160 sn, birleştirme 5,7 sn, JSON yazma 10,2 sn; 447 snapshot/451 checkpoint vardı. Bekleme sırasında tarayıcı iş yapabileceği için bunlar yalnızca sunucu süresi demek değildir.
+Ölçümler Windows, Python ve kurulu Chrome ile yapılan gerçek kullanıcı denemeleridir. CPU/RAM, ağ hızı ve Google sunucu koşulları kaydedilmemiştir. Bunlar kontrollü laboratuvar ortalamaları değildir.
 
-## Ölçüm sınırları
+Küçük ve büyük örneğin süresi doğrusal artmak zorunda değildir. Bu iki sonuçtan 20 bin yorumun süresi kesin hesaplanamaz. Maps arayüzünün değişmesi, ağ ve büyüyen sayfa içeriği süreyi etkileyebilir. Toplam ve yıldız eşleşmesi görünmeyen bütün içeriğin eksiksiz olduğunu tek başına kanıtlamaz.
 
-- Windows, Python 3.13.0, Playwright 1.61.0, openpyxl 3.1.5 ve kurulu Chrome kullanıldı.
-- CPU/RAM, ağ hızı, Chrome sürümü ve Google sunucu koşulları kaydedilmedi.
-- Her sürüm için burada tek tamamlanmış karşılaştırma var; kontrollü laboratuvar/çoklu tekrar ortalaması değildir.
-- Küçük FAMİ sonucu ile Honda sonucu doğrusal hız modeli oluşturmaz; 20 bin yorumun süresi kesin çıkarılamaz.
-- Toplam/yıldız/alan eşleşmesi bütün görünmeyen içeriğin %100 doğruluğunu kanıtlamaz.
-
-Yeni ölçümde işletme, sürüm/hash, ortam, görünen/son/toplanan adet, metin/cevap adedi, hata ve süre başlangıcı birlikte belirtilmeli. Kalite eşleşmeden hızlı süre başarı sayılmamalı.
+Yeni ölçüm paylaşırken görünen/alınan kayıt sayısını, metin ve cevap adetlerini, süre başlangıcı/bitişini ve varsa hata durumunu belirtin. Kalite kontrolü tamamlanmadan yalnızca kısa süreyi başarı ölçütü olarak kullanmayın.

@@ -63,7 +63,7 @@ Program ayrı `Chrome_profili` oluşturur. Sonraki run'da oturum korunabilir. Do
 
 Konsol hazırlık, yükleme, metin açma ve Excel aşamalarını gösterir. Genel yüzde yaklaşık aşama ağırlığıdır. Yükleme sayacı benzersiz yorum sayısıdır; metin açma sayacı düğme işlerini gösterebilir. ETA aynı aşamanın ölçülen hızına göre değişir, başta “hesaplanıyor” yazabilir.
 
-4.4'te **More/Daha fazla ve özgün metin kontrolleri liste yüklendikten sonra** işlenir. İşletme cevabı da ayrı kontrol edilir. Bir tıklama kesin başarı sayılmaz; son durum tekrar okunur. Kısmi çıktı varsa %100 dosya üretiminin bitişini ifade edebilir; tamlık garantisi değildir.
+**More/Daha fazla ve özgün metin kontrolleri liste yüklendikten sonra** işlenir. İşletme cevabı da ayrı kontrol edilir. Bir tıklama kesin başarı sayılmaz; son durum tekrar okunur. Kısmi çıktı varsa %100 dosya üretiminin bitişini ifade edebilir; tamlık garantisi değildir.
 
 ## 7. Excel
 

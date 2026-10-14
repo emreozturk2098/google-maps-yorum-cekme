@@ -2,7 +2,7 @@
 
 Google Maps işletme değerlendirmelerini ve işletme cevaplarını görünür Chrome oturumundan okuyup **Türkçe Excel raporuna** aktaran, Windows için tek Python dosyalı araç.
 
-**Yayın sürümü: 4.4.** Normal çalıştırmada **ÖZET** ve **TÜM YORUMLAR** sayfaları üretilir. Google Maps API anahtarı gerekmez. Gerekli Google girişini kullanıcı tarayıcıda tamamlar; kod parola istemez.
+Normal çalıştırmada **ÖZET** ve **TÜM YORUMLAR** sayfaları üretilir. Google Maps API anahtarı gerekmez. Gerekli Google girişini kullanıcı tarayıcıda tamamlar; kod parola istemez.
 
 ## Özellikler
 
@@ -50,14 +50,14 @@ Fotoğraflı yorumun normal metni de alınır. Görsel içindeki yazılar, ayrı
 
 Süre başlangıcı kullanıcının ENTER'a basması, bitiş Excel kaydının tamamlanmasıdır. Chrome açma, bağlantı yazma ve giriş beklemeleri hariçtir.
 
-| İşletme | Sürüm | Değerlendirme | Metinli | Tespit edilen işletme cevabı | Süre |
-| --- | --- | ---: | ---: | ---: | --- |
-| FAMİ | 4.1 | 107 | 86 | 66 | 30,27 sn |
-| Honda Plaza Damla | **4.4** | **1.445** | **958** | **0** | **13 dk 16,26 sn** |
+| Örnek | Değerlendirme | Metinli | Tespit edilen işletme cevabı | Süre |
+| --- | ---: | ---: | ---: | --- |
+| İşletme A | 107 | 86 | 66 | 30,27 sn |
+| İşletme B | 1.445 | 958 | 0 | 13 dk 16,26 sn |
 
-Bu çalışmalarda görünen toplam ve yıldız dağılımı eşleşmiştir. Honda 4.3–4.6 kayıtlarının kimlik/ad/yıldız/özgün metin/cevap alanları da eşleşmiştir. Sıfır cevap okuyucunun bu çalışmalarda tespit ettiği durumdur; işletmenin hiçbir zaman cevap yazmadığının bağımsız kanıtı değildir.
+İşletme adları gizlenmiştir. Bu çalışmalarda görünen toplam ve yıldız dağılımı eşleşmiştir. Sıfır cevap, aracın bu çalışmada tespit ettiği durumdur; işletmenin hiçbir zaman cevap yazmadığının bağımsız kanıtı değildir.
 
-4.4, ölçülen Honda denemelerinde en kısa süreyi verdiği için seçildi. **Her işletme için en hızlı sürüm veya %100 doğruluk garantisi değildir.** Daha yavaş çıkan deneyler ve ölçüm sınırları: [Performans sonuçları](PERFORMANS_SONUCLARI.md).
+Süreler gerçek denemelerden alınmıştır; başka bir işletmede aynı hız veya eksiksiz sonuç garantisi vermez. Aşamalar ve ölçüm sınırları: [Performans sonuçları](PERFORMANS_SONUCLARI.md).
 
 ## Nasıl çalışır ve sınırları
 
@@ -80,9 +80,7 @@ requirements.txt               Doğrulanan bağımlılıklar
 KULLANIM_REHBERI.md             Sıfırdan kurulum ve sorun çözme
 TEKNIK_ACIKLAMA.md              Kod akışı ve teknik çıktılar
 PERFORMANS_SONUCLARI.md         Ölçülen denemeler
-CHANGELOG.md                   Geliştirme ve geri dönüş özeti
 CONTRIBUTING.md                Katkı ve hata bildirimi
-SURUM_BILGISI.json              Sürüm ve kaynak SHA-256
 LICENSE                        MIT lisansı
 ```
 
@@ -90,6 +88,6 @@ LICENSE                        MIT lisansı
 
 ## Geri bildirim ve iletişim
 
-Olumlu/olumsuz görüşleriniz, hata bildirimleriniz ve geliştirme önerileriniz için **[emre.ozturk.2098@gmail.com](mailto:emre.ozturk.2098@gmail.com)** adresine yazabilir veya [GitHub Issues](https://github.com/emreozturk2098/google-maps-yorum-cekme/issues) üzerinden bildirim açabilirsiniz. Hangi sürümü kullandığınızı ve beklenen/görülen davranışı belirtmeniz yardımcı olur. Oturum çerezleri, parolalar ve özel müşteri verileri göndermeyin.
+Olumlu/olumsuz görüşleriniz, hata bildirimleriniz ve geliştirme önerileriniz için **[emre.ozturk.2098@gmail.com](mailto:emre.ozturk.2098@gmail.com)** adresine yazabilir veya [GitHub Issues](https://github.com/emreozturk2098/google-maps-yorum-cekme/issues) üzerinden bildirim açabilirsiniz. Beklenen ve görülen davranışı, alınan kayıt sayısını ve süreyi belirtmeniz yardımcı olur. Oturum çerezleri, parolalar ve özel müşteri verileri göndermeyin.
 
 Özgün kod **MIT lisansıyla** paylaşılmıştır. Bu lisans Google verilerine veya üçüncü taraf hizmetlere hak vermez. [Lisans](LICENSE).

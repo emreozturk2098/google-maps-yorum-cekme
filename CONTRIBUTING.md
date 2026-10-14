@@ -2,7 +2,7 @@
 
 Olumlu/olumsuz görüş, hata veya öneriler için **[emre.ozturk.2098@gmail.com](mailto:emre.ozturk.2098@gmail.com)** adresine yazabilir veya repo Issues bölümünü kullanabilirsiniz.
 
-Bildirimde sürüm, Python/Chrome/işletim sistemi, yeniden oluşturma adımları, beklenen/görülen sonuç, görünen/alınan adet ve hata aşaması yardımcı olur. Hız sorununda hangi aşama ve hangi başlangıç/bitiş süreleri kullanıldı belirtin.
+Bildirimde Python/Chrome/işletim sistemi, yeniden oluşturma adımları, beklenen/görülen sonuç, görünen/alınan adet ve hata aşaması yardımcı olur. Hız sorununda hangi aşama ve hangi başlangıç/bitiş süreleri kullanıldı belirtin.
 
 Parola, çerez, yetkilendirme başlığı veya Chrome profili göndermeyin. Gerçek müşteri adları/metinleri yerine yeterli anonim/kurgu örnek kullanın. Excel/kurtarma JSON'u otomatik güvenli paylaşım dosyaları değildir.
 
