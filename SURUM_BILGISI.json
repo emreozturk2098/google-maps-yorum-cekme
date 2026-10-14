@@ -1,0 +1,13 @@
+{
+  "surum": "4.4",
+  "amac": "Yalnızca yorum çekme ve temel yönetici Excel'i",
+  "kaynak_dosya": "google_yorumlari_otomatik.py",
+  "sha256": "c7c028afb556e4648f9d00a9559ab71eb8a707b164ce9aba0cbfae385ed48c25",
+  "hazirlanma_tarihi": "2026-10-14",
+  "dogrulanan_python": "3.13",
+  "tarayici": "Kurulu Google Chrome / Windows",
+  "varsayilan_derin_analiz": false,
+  "deneysel_analyze_komutu_kaynakta": true,
+  "lisans": "MIT",
+  "yayin_secimi": "Olculen Honda denemelerinde en kisa toplam sure; genel hiz garantisi degil"
+}
